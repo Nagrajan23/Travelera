@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Travelera</string>
+    <string name="love">Made with love by Travelera team!</string>
+    <string name="Welcome">Welcome Traveller</string>
+    <string name="search">Search</string>
+    <string name="Waterfront">Waterfront</string>
+    <string name="nearby">Near-by</string>
+    <string name="Parks">Parks</string>
+    <string name="Religious_places">Religious places</string>
+    <string name="Museums">Museums / Aquariums</string>
+    <string name="Mountains">Mountains</string>
+    <string name="Wildlife">Wildlife</string>
+    <string name="Manmade_monuments">Man-made monuments</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
