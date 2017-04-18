@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         nearby= (Button) findViewById(R.id.nearby);
-        /*nearby.setOnClickListener(new View.OnClickListener() {
+        nearby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent nearby= new Intent(MainActivity.this, MapsActivity.class);
+                Intent nearby= new Intent(MainActivity.this, MapsActivity2.class);
                 startActivity(nearby);
 
             }
-        });*/
+        });
     }
 
     @Override
