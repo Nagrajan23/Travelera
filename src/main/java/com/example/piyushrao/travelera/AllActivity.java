@@ -75,7 +75,7 @@ public class AllActivity extends AppCompatActivity {
                 "Linux", "OS/2", "xx", "yy", "zz", "bb", "cc", "dd" };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, values);
-        lv.setAdapter(adapter);
+        //lv.setAdapter(adapter);
 
         cursor1.close();
         db.close();
@@ -135,6 +135,15 @@ public class AllActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_all, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+            String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+                    "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                    "Linux", "OS/2", "xx", "yy", "zz", "bb", "cc", "dd" };
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(),
+                    android.R.layout.simple_list_item_1, values);
+            ListView lv = (ListView) rootView.findViewById(R.id.list1);
+            lv.setAdapter(adapter);
+
             return rootView;
         }
     }
