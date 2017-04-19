@@ -1,5 +1,7 @@
 package com.example.piyushrao.travelera;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class AllActivity extends AppCompatActivity {
 
@@ -46,6 +53,32 @@ public class AllActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        //Connect Database
+        SQLiteDatabase db;
+        db = openOrCreateDatabase("TestingData.db",SQLiteDatabase.CREATE_IF_NECESSARY,null);
+        db.setVersion(1);
+        db.setLocale(Locale.getDefault());
+        Cursor cursor1 = db.rawQuery("SELECT * FROM TourSites1", null);
+
+        String[] fromColumns = {"_id", "siteName"};
+        int[] toViews = {R.id.textViewList1, R.id.textViewList2};
+
+        SimpleCursorAdapter cur_adapter = new SimpleCursorAdapter(this,
+                R.layout.list1_layout, cursor1, fromColumns, toViews, 0);
+
+        ListView lv = (ListView) findViewById(R.id.list1);
+        //lv.setAdapter(cur_adapter);
+
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                "Linux", "OS/2", "xx", "yy", "zz", "bb", "cc", "dd" };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, values);
+        lv.setAdapter(adapter);
+
+        cursor1.close();
+        db.close();
     }
 
 

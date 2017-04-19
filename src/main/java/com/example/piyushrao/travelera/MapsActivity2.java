@@ -62,6 +62,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
             liberty = new LatLng(lat, lon);
             mMap.addMarker(new MarkerOptions().position(liberty).title(place));
         }while(cursor1.moveToNext());
+        cursor1.close();
         db.close();
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(liberty));
