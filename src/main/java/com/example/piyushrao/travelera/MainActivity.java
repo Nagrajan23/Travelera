@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             db.execSQL("insert into TourSites1 values(1212,'Charging Bull','manMade',' ',40.705523,-74.013457,0)");
             db.execSQL("insert into TourSites1 values(1213,'American Museum of natural history','manMade','museum',40.781328,-73.973988,0)");
         }
+        //Test Piyush
         cursor1.close();
         db.close();
 
