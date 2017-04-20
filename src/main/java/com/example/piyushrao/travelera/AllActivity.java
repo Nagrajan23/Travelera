@@ -1,5 +1,6 @@
 package com.example.piyushrao.travelera;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursorDriver;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -29,6 +31,7 @@ import java.util.Locale;
 
 public class AllActivity extends AppCompatActivity {
 
+    public static final String ID_MESSAGE = "com.example.ID";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -60,7 +63,6 @@ public class AllActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout1);
         tabLayout.setupWithViewPager(mViewPager);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -146,8 +148,18 @@ public class AllActivity extends AppCompatActivity {
 
             cur_adapter = new SimpleCursorAdapter(this.getContext(),
                     R.layout.list1_layout, cursor1, fromColumns, toViews, 0);
-            ListView lv = (ListView) rootView.findViewById(R.id.list1);
+            final ListView lv = (ListView) rootView.findViewById(R.id.list1);
             lv.setAdapter(cur_adapter);
+            lv.setClickable(true);
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Object o = lv.getItemAtPosition(position);
+                    Intent intent = new Intent(getContext(),DetailActivity.class);
+                    intent.putExtra(ID_MESSAGE, id);
+                    startActivity(intent);
+                }
+            });
 
             //cursor1.close();
 
