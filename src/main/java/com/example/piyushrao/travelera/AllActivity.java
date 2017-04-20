@@ -1,9 +1,12 @@
 package com.example.piyushrao.travelera;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCursorDriver;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQuery;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.app.Fragment;
@@ -54,31 +57,8 @@ public class AllActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        //Connect Database
-        SQLiteDatabase db;
-        db = openOrCreateDatabase("TestingData.db",SQLiteDatabase.CREATE_IF_NECESSARY,null);
-        db.setVersion(1);
-        db.setLocale(Locale.getDefault());
-        Cursor cursor1 = db.rawQuery("SELECT * FROM TourSites1", null);
-
-        String[] fromColumns = {"_id", "siteName"};
-        int[] toViews = {R.id.textViewList1, R.id.textViewList2};
-
-        SimpleCursorAdapter cur_adapter = new SimpleCursorAdapter(this,
-                R.layout.list1_layout, cursor1, fromColumns, toViews, 0);
-
-        ListView lv = (ListView) findViewById(R.id.list1);
-        //lv.setAdapter(cur_adapter);
-
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "xx", "yy", "zz", "bb", "cc", "dd" };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, values);
-        //lv.setAdapter(adapter);
-
-        cursor1.close();
-        db.close();
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout1);
+        tabLayout.setupWithViewPager(mViewPager);
     }
 
 
@@ -133,16 +113,51 @@ public class AllActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_all, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+            int view_number = getArguments().getInt(ARG_SECTION_NUMBER);
+            //Connect Database
+            SimpleCursorAdapter cur_adapter;
+            SQLiteDatabase db;
+            Cursor cursor1;
+
+            db = getActivity().openOrCreateDatabase("TestingData.db", SQLiteDatabase.CREATE_IF_NECESSARY, null);
+            db.setVersion(1);
+            db.setLocale(Locale.getDefault());
+            String sqlQuery = " ";
+            switch(view_number)
+            {
+                case 1: sqlQuery = " "; break;
+                case 2: sqlQuery = "where category = 'waterfront' OR category2 = 'waterfront'"; break;
+                case 3: sqlQuery = "where category = 'park' OR category2 = 'park'"; break;
+                case 4: sqlQuery = "where category = 'religious' OR category2 = 'religious'"; break;
+                case 5: sqlQuery = "where category = 'museum' OR category2 = 'museum'"; break;
+                case 6: sqlQuery = "where category = 'mountain' OR category2 = 'mountain'"; break;
+                case 7: sqlQuery = "where category = 'wildlife' OR category2 = 'wildlife'"; break;
+                case 8: sqlQuery = "where category = 'manMade' OR category2 = 'manMade'"; break;
+            }
+            sqlQuery = "SELECT * FROM TourSites1 " + sqlQuery;
+            cursor1 = db.rawQuery(sqlQuery, null);
+
+            cursor1.moveToFirst();
+            String[] fromColumns = {"siteName", "rating"};
+            int[] toViews = {R.id.textViewList1, R.id.textViewList2};
+
+            cur_adapter = new SimpleCursorAdapter(this.getContext(),
+                    R.layout.list1_layout, cursor1, fromColumns, toViews, 0);
+            ListView lv = (ListView) rootView.findViewById(R.id.list1);
+            lv.setAdapter(cur_adapter);
+
+            //cursor1.close();
 
             String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
                     "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                     "Linux", "OS/2", "xx", "yy", "zz", "bb", "cc", "dd" };
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(),
                     android.R.layout.simple_list_item_1, values);
-            ListView lv = (ListView) rootView.findViewById(R.id.list1);
-            lv.setAdapter(adapter);
+
+            //lv.setAdapter(adapter);
 
             return rootView;
         }
@@ -175,11 +190,21 @@ public class AllActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "All";
                 case 1:
-                    return "SECTION 2";
+                    return "Waterfronts";
                 case 2:
-                    return "SECTION 3";
+                    return "Parks";
+                case 3:
+                    return "Religious";
+                case 4:
+                    return "Museums";
+                case 5:
+                    return "Mountains";
+                case 6:
+                    return "Wildlife";
+                case 7:
+                    return "Man Made";
             }
             return null;
         }

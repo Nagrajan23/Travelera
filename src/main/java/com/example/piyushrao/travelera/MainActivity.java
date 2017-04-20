@@ -42,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
             db.execSQL("insert into TourSites1 values(1203,'Times Square','manMade',' ',40.758911, -73.985142,0)");
             db.execSQL("insert into TourSites1 values(1204,'Yankee Stadium','manMade',' ',40.829735, -73.926144,0)");
             db.execSQL("insert into TourSites1 values(1205,'One World Observatory','manMade',' ',40.713344, -74.013389,0)");
-            db.execSQL("insert into TourSites1 values(1206,'Central Park Zoo','wildlife',' ',40.768441,-73.970542,0)");
-            db.execSQL("insert into TourSites1 values(1207,'Empire State building','manMade',' ',40.748457,-73.985702,0)");
+            db.execSQL("insert into TourSites1 values(1206,'Central Park Zoo','wildlife','park',40.768441,-73.970542,0)");
+            db.execSQL("insert into TourSites1 values(1207,'Empire State Building','manMade',' ',40.748457,-73.985702,0)");
             db.execSQL("insert into TourSites1 values(1208,'Trinity Church','religious',' ',40.708065,-74.012185,0)");
-            db.execSQL("insert into TourSites1 values(1209,'Battery park','park','waterfront',40.702486,-74.016770,0)");
+            db.execSQL("insert into TourSites1 values(1209,'Battery Park','park','waterfront',40.702486,-74.016770,0)");
             db.execSQL("insert into TourSites1 values(1210,'Rockefeller Center','manMade',' ',40.758807,-73.978803,0)");
-            db.execSQL("insert into TourSites1 values(1211,'Teardrop park','park','waterfront',40.717068,-74.015532,0)");
+            db.execSQL("insert into TourSites1 values(1211,'Teardrop Park','park','waterfront',40.717068,-74.015532,0)");
             db.execSQL("insert into TourSites1 values(1212,'Charging Bull','manMade',' ',40.705523,-74.013457,0)");
-            db.execSQL("insert into TourSites1 values(1213,'American Museum of natural history','manMade','museum',40.781328,-73.973988,0)");
+            db.execSQL("insert into TourSites1 values(1213,'American Museum of Natural History','manMade','museum',40.781328,-73.973988,0)");
         }
 
         cursor1.close();
