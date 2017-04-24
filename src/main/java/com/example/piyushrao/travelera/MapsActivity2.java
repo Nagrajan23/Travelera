@@ -43,11 +43,11 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        /*LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
 
-        /*SQLiteDatabase db;
+        SQLiteDatabase db;
         db = openOrCreateDatabase("TestingData.db",SQLiteDatabase.CREATE_IF_NECESSARY,null);
         db.setVersion(1);
         db.setLocale(Locale.getDefault());
@@ -70,7 +70,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         db.close();
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(liberty));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(12));*/
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(12));//*/
         // TODO http://stackoverflow.com/questions/17061063/map-search-bar-in-google-maps-v2#27243187
     }
 }

@@ -16,4 +16,12 @@
     <string name="title_activity_all">AllActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="rate_this">Rate This Site:</string>
+    <string name="enter_name">Please Enter Name</string>
+    <string name="rate_button">RATE</string>
+    <string name="thanks">Thanks!</string>
+    <string name="enter_review">Enter Review...</string>
+    <string name="add_review">Add a Review (Optional)</string>
+    <string name="add">ADD</string>
+    <string name="your_rating">Your Rating:</string>
 </resources>

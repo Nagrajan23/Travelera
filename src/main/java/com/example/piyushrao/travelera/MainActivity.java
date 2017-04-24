@@ -33,6 +33,29 @@ public class MainActivity extends AppCompatActivity {
                         "longitude" + " DOUBLE," +
                         "rating" + " FLOAT)";
         db.execSQL(SQL_CREATE_ENTRIES);
+
+        final String SQL_CREATE_RATINGS =
+                "CREATE TABLE IF NOT EXISTS " + "TourRatings1" + " (" +
+                        "_id" + " INTEGER PRIMARY KEY," +
+                        "siteID" + " INTEGER," +
+                        "personName" + " TEXT," +
+                        "rating" + " FLOAT)";
+        db.execSQL(SQL_CREATE_RATINGS);
+
+        final String SQL_CREATE_COMMENTS =
+                "CREATE TABLE IF NOT EXISTS " + "TourComments1" + " (" +
+                        "_id" + " INTEGER PRIMARY KEY," +
+                        "siteID" + " INTEGER," +
+                        "personName" + " TEXT," +
+                        "comment" + " TEXT)";
+        db.execSQL(SQL_CREATE_RATINGS);
+
+        final String SQL_CREATE_NUMERATOR =
+                "CREATE TABLE IF NOT EXISTS " + "TourNumerator1" + " (" +
+                        "_id" + " INTEGER PRIMARY KEY," +
+                        "tableName" + " TEXT," +
+                        "nextID" + " INTEGER)";
+        db.execSQL(SQL_CREATE_NUMERATOR);
         //Create initial Records
         Cursor cursor1 = db.rawQuery("SELECT * FROM TourSites1", null);
         if(cursor1.getCount() == 0)
@@ -50,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             db.execSQL("insert into TourSites1 values(1211,'Teardrop Park','park','waterfront',40.717068,-74.015532,0)");
             db.execSQL("insert into TourSites1 values(1212,'Charging Bull','manMade',' ',40.705523,-74.013457,0)");
             db.execSQL("insert into TourSites1 values(1213,'American Museum of Natural History','manMade','museum',40.781328,-73.973988,0)");
+
+            db.execSQL("insert into TourNumerator1 values(1,'TourSites1',1214)");
+            db.execSQL("insert into TourNumerator1 values(2,'TourRatings1',1)");
+            db.execSQL("insert into TourNumerator1 values(3,'TourComments1',1)");
         }
 
         cursor1.close();

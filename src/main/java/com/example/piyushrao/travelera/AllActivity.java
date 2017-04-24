@@ -148,6 +148,7 @@ public class AllActivity extends AppCompatActivity {
 
             cur_adapter = new SimpleCursorAdapter(this.getContext(),
                     R.layout.list1_layout, cursor1, fromColumns, toViews, 0);
+            //SimpleCu
             final ListView lv = (ListView) rootView.findViewById(R.id.list1);
             lv.setAdapter(cur_adapter);
             lv.setClickable(true);
@@ -160,8 +161,6 @@ public class AllActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
-            //cursor1.close();
 
             String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
                     "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
