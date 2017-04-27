@@ -12,7 +12,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -21,6 +23,7 @@ import java.util.jar.Attributes;
 public class DetailActivity extends AppCompatActivity {
 
     private String name = "Raj";
+    private Float rating = 0.0f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,6 @@ public class DetailActivity extends AppCompatActivity {
         cursor1.moveToFirst();
         if(cursor1.getCount() > 0)
         {
-            float rating;
             rating = cursor1.getFloat(3);
             ratingBar.setRating(rating);
             ratingBar.setEnabled(false);
@@ -80,19 +82,13 @@ public class DetailActivity extends AppCompatActivity {
             textView4.setText(R.string.rate_this);
         }
         cursor1.close();
+        load_comments();
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 onClickRating();
             }
         });
-        /*ratingBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                onClickRating();
-                return false;
-            }
-        });*/
     }
 
     public void onClickRating()
@@ -117,12 +113,12 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         long id_long = intent.getLongExtra(AllActivity.ID_MESSAGE,1);
-        float rating2 = ratingBar.getRating();
+        rating = ratingBar.getRating();
         db.execSQL("insert into TourRatings1 values("
                 + ratingID + ","
                 + id_long + ",'"
                 + name + "',"
-                + ratingBar.getRating() + ")"
+                + rating + ")"
         );
         ratingID += 1;
         db.execSQL("update TourNumerator1 set nextID = " + ratingID
@@ -143,6 +139,7 @@ public class DetailActivity extends AppCompatActivity {
         ratingBar.setEnabled(false);
         rate.setText(R.string.add);
         editComment.setVisibility(View.VISIBLE);
+        rate.setVisibility(View.VISIBLE);
         editComment.setHint(R.string.enter_review);
         textViewName.setText(R.string.add_review);
         textView4.setText(R.string.thanks);
@@ -160,18 +157,60 @@ public class DetailActivity extends AppCompatActivity {
         db.setVersion(1);
         db.setLocale(Locale.getDefault());
 
-        if(name.isEmpty() && rate.getText().equals("RATE"))
+        if(comment.isEmpty() && rate.getText().equals("ADD"))
         {
-            //editName.animate();
-            //editName.setError("Name Blank");
-        }
-        else if(rate.getText().equals("RATE"))
-        {
-
+            editComment.animate();
+            editComment.setError("Review Blank");
         }
         else if(rate.getText().equals("ADD"))
         {
+            Cursor cursor2;
+            String sqlQuery = "Select * from TourNumerator1 where tableName = 'TourComments1'";
+            cursor2 = db.rawQuery(sqlQuery, null);
+            cursor2.moveToFirst();
+            long commentID = cursor2.getLong(2);
 
+            Intent intent = getIntent();
+            long id_long = intent.getLongExtra(AllActivity.ID_MESSAGE,1);
+            //float rating2 = ratingBar.getRating();
+            db.execSQL("insert into TourComments1 values("
+                    + commentID + ","
+                    + id_long + ",'"
+                    + name + "',"
+                    + rating + ",'"
+                    + comment + "')"
+            );
+            commentID += 1;
+            db.execSQL("update TourNumerator1 set nextID = " + commentID
+                    + " where tableName = 'TourComments1'"
+            );
+            editComment.setText("");
+            load_comments();
         }
+    }
+
+    public void load_comments()
+    {
+        SimpleCursorAdapter cur_adapter;
+        SQLiteDatabase db;
+        Cursor cursor3;
+
+        db = openOrCreateDatabase("TestingData.db", SQLiteDatabase.CREATE_IF_NECESSARY, null);
+        db.setVersion(1);
+        db.setLocale(Locale.getDefault());
+
+        Intent intent = getIntent();
+        long id_long = intent.getLongExtra(AllActivity.ID_MESSAGE,1);
+        String sqlQuery = "SELECT * FROM TourComments1 where siteID = " + id_long;
+        cursor3 = db.rawQuery(sqlQuery, null);
+        cursor3.moveToFirst();
+        String[] fromColumns = {"personName", "comment", "rating"};
+        int[] toViews = {R.id.textViewCommentPerson, R.id.textViewCommentText, R.id.textViewCommentRating};
+
+        cur_adapter = new SimpleCursorAdapter(this,
+                R.layout.list2_layout, cursor3, fromColumns, toViews, 0);
+        final ListView lv = (ListView) findViewById(R.id.list2);
+        lv.setAdapter(cur_adapter);
+        cursor3.close();
     }
 }

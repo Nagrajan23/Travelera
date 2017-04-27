@@ -47,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
                         "_id" + " INTEGER PRIMARY KEY," +
                         "siteID" + " INTEGER," +
                         "personName" + " TEXT," +
+                        "rating" + " FLOAT," +
                         "comment" + " TEXT)";
-        db.execSQL(SQL_CREATE_RATINGS);
+        db.execSQL(SQL_CREATE_COMMENTS);
 
         final String SQL_CREATE_NUMERATOR =
                 "CREATE TABLE IF NOT EXISTS " + "TourNumerator1" + " (" +

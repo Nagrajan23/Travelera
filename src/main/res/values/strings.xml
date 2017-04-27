@@ -21,7 +21,7 @@
     <string name="rate_button">RATE</string>
     <string name="thanks">Thanks!</string>
     <string name="enter_review">Enter Review...</string>
-    <string name="add_review">Add a Review (Optional)</string>
+    <string name="add_review">Add Review (Optional)</string>
     <string name="add">ADD</string>
     <string name="your_rating">Your Rating:</string>
 </resources>

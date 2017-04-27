@@ -148,7 +148,7 @@ public class AllActivity extends AppCompatActivity {
 
             cur_adapter = new SimpleCursorAdapter(this.getContext(),
                     R.layout.list1_layout, cursor1, fromColumns, toViews, 0);
-            //SimpleCu
+
             final ListView lv = (ListView) rootView.findViewById(R.id.list1);
             lv.setAdapter(cur_adapter);
             lv.setClickable(true);

@@ -15,7 +15,8 @@
         android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/textViewDetail2"
@@ -25,7 +26,8 @@
         android:text="TextView"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDetail1" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetail1"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/textViewDetail3"
@@ -35,7 +37,8 @@
         android:text="TextView"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDetail2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetail2"
+        android:layout_marginStart="16dp" />
 
     <RatingBar
         android:id="@+id/ratingBar1"
@@ -45,7 +48,8 @@
         android:layout_marginTop="8dp"
         android:isIndicator="false"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDetail4" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetail4"
+        android:layout_marginEnd="72dp" />
 
     <TextView
         android:id="@+id/textViewDetail4"
@@ -67,7 +71,8 @@
         android:text="@string/enter_name"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar1" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar1"
+        android:layout_marginStart="16dp" />
 
     <Button
         android:id="@+id/buttonRate"
@@ -92,6 +97,16 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <ListView
+        android:id="@+id/list2"
+        android:layout_width="0dp"
+        android:layout_height="551dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRate"
+        tools:layout_editor_absoluteX="8dp" />
 
 </android.support.constraint.ConstraintLayout>
