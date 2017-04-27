@@ -211,6 +211,5 @@ public class DetailActivity extends AppCompatActivity {
                 R.layout.list2_layout, cursor3, fromColumns, toViews, 0);
         final ListView lv = (ListView) findViewById(R.id.list2);
         lv.setAdapter(cur_adapter);
-        cursor3.close();
     }
 }
