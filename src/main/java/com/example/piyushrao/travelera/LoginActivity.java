@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
                 else
                 {
                     Intent name_intent = new Intent(LoginActivity.this, LoginActivity.class);
-                    name_intent.putExtra(NAME_MESSAGE, name);
+                    name_intent.putExtra(NAME_MESSAGE,name);
                     Intent login = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(login);
                 }
