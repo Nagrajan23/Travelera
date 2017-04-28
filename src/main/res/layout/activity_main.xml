@@ -29,7 +29,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="54dp"
         android:layout_marginEnd="54dp"
-        android:id="@+id/textView2" />
+        android:id="@+id/textViewMain2" />
 
     <Button
         android:id="@+id/search"

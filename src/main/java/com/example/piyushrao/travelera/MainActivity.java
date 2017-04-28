@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Locale;
 
@@ -16,6 +17,12 @@ public class MainActivity extends AppCompatActivity {
     public Button nearby;
 
     public void init(){
+
+        TextView textViewMain1 = (TextView) findViewById(R.id.textViewMain2);
+        Intent welcome = getIntent();
+        String namemain = welcome.getStringExtra(LoginActivity.NAME_MESSAGE);
+        String name_main = "Welcome " + namemain;
+        textViewMain1.setText(name_main);
 
         //Create Database
         SQLiteDatabase db;
