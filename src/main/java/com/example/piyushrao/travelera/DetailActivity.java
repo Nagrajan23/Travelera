@@ -22,16 +22,16 @@ import java.util.jar.Attributes;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private String name = "Raj";
+    private String name = LoginActivity.personName;
     private Float rating = 0.0f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
 
         Intent intent = getIntent();
         long id_long = intent.getLongExtra(AllActivity.ID_MESSAGE,1);
 
+        setContentView(R.layout.activity_detail);
         SQLiteDatabase db;
         Cursor cursor1;
 

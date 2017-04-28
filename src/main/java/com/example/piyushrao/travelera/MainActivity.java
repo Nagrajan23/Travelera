@@ -18,12 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void init(){
 
-        TextView textViewMain1 = (TextView) findViewById(R.id.textViewMain2);
-        Intent welcome = getIntent();
-        String namemain = welcome.getStringExtra(LoginActivity.NAME_MESSAGE);
-        String name_main = "Welcome " + namemain;
-        textViewMain1.setText(name_main);
-
         //Create Database
         SQLiteDatabase db;
         db = openOrCreateDatabase("TestingData.db",SQLiteDatabase.CREATE_IF_NECESSARY,null);
@@ -114,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView textViewName = (TextView) findViewById(R.id.textViewMain2);
+        Intent name_intent = getIntent();
+        String name = name_intent.getStringExtra(LoginActivity.NAME_MESSAGE);
+        String name_main = "Welcome " + name;
+        textViewName.setText(name_main);
         init();
     }
 }
